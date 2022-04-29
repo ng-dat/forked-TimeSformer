@@ -1,13 +1,13 @@
 TRAIN:
-  ENABLE: False
+  ENABLE: True
   DATASET: kinetics
-  BATCH_SIZE: 8
-  EVAL_PERIOD: 5
-  CHECKPOINT_PERIOD: 5
+  BATCH_SIZE: 4
+  EVAL_PERIOD: 2
+  CHECKPOINT_PERIOD: 2
   AUTO_RESUME: True
-  CHECKPOINT_FILE_PATH: /home1/ndat/566/timesformer/forked-TimeSformer/checkpoints/TimeSformer_divST_96x4_224_K600.pyth
+  CHECKPOINT_FILE_PATH: /home1/ndat/566/timesformer/forked-TimeSformer/checkpoints/checkpoint_epoch_00012.pyth
 DATA:
-  PATH_TO_DATA_DIR: /home1/ndat/566/timesformer/forked-TimeSformer/anno_dataset/
+  PATH_TO_DATA_DIR: /home1/ndat/566/timesformer/forked-TimeSformer/anno_ucfcrime/
   NUM_FRAMES: 96
   SAMPLING_RATE: 4
   TRAIN_JITTER_SCALES: [256, 320]
@@ -21,27 +21,27 @@ SOLVER:
   LR_POLICY: steps_with_relative_lrs
   STEPS: [0, 11, 14]
   LRS: [1, 0.1, 0.01]
-  MAX_EPOCH: 15
+  MAX_EPOCH: 12
   MOMENTUM: 0.9
   WEIGHT_DECAY: 1e-4
   OPTIMIZING_METHOD: sgd
 MODEL:
   MODEL_NAME: vit_base_patch16_224
-  NUM_CLASSES: 400
+  NUM_CLASSES: 14
   ARCH: vit
   LOSS_FUNC: cross_entropy
   DROPOUT_RATE: 0.5
 TEST:
   ENABLE: True
   DATASET: kinetics
-  BATCH_SIZE: 8
+  BATCH_SIZE: 4
   NUM_ENSEMBLE_VIEWS: 1
-  NUM_SPATIAL_CROPS: 3
-  CHECKPOINT_FILE_PATH: /home1/ndat/566/timesformer/forked-TimeSformer/checkpoints/TimeSformer_divST_96x4_224_K600.pyth
+  NUM_SPATIAL_CROPS: 1
+  CHECKPOINT_FILE_PATH: /home1/ndat/566/timesformer/forked-TimeSformer/checkpoints/checkpoint_epoch_00012.pyth
 DATA_LOADER:
   NUM_WORKERS: 1
   PIN_MEMORY: True
-NUM_GPUS: 1
+NUM_GPUS: 2
 NUM_SHARDS: 1
 RNG_SEED: 0
 OUTPUT_DIR: .
